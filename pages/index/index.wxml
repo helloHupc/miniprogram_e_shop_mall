@@ -1,4 +1,9 @@
 <!--index.wxml-->
-<view class="container">
-  Weixin
+
+<view class="home-page-header">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <swiper-item wx:for="{{imgSrcs}}" wx:key="index" class="swiper">
+      <image src="{{item.img}}" />
+    </swiper-item>
+  </swiper>
 </view>
