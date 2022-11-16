@@ -1,9 +1,17 @@
 <!--index.wxml-->
 
 <view class="home-page-header">
-  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <swiper-item wx:for="{{imgSrcs}}" wx:key="index" class="swiper">
-      <image src="{{item.img}}" />
-    </swiper-item>
-  </swiper>
+<!-- 搜索框 -->
+  <view class="search-container" >
+    <icon class="icon-small" type="search" size="16"></icon>
+		<input class="search-input" type="text" confirm-type="search" auto-focus placeholder="iphone 13 火热发售中" />
+	</view>
+<!-- 轮播图 -->
+  <view class="swiper-wrap">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper-item wx:for="{{imgSrcs}}" wx:key="index" class="swiper">
+        <image src="{{item.img}}" />
+      </swiper-item>
+    </swiper>
+  </view>
 </view>
