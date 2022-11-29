@@ -4,7 +4,7 @@
 <!-- 搜索框 -->
   <view class="search-container" >
     <icon class="icon-small" type="search" size="16"></icon>
-		<input class="search-input" type="text" confirm-type="search" auto-focus placeholder="iphone 13 火热发售中" />
+		<input class="search-input" type="text" confirm-type="search" auto-focus placeholder="iphone 13 火热发售中" placeholder-class="placeholderStyle" />
 	</view>
 <!-- 轮播图 -->
   <view class="swiper-wrap">
@@ -14,4 +14,23 @@
       </swiper-item>
     </swiper>
   </view>
+</view>
+
+
+<view class="home-page-container">
+<mp-tabs 
+  tabs="{{tabList}}" 
+  activeTab="{{activeTab}}" 
+  swiperClass="weui-tabs-swiper"
+  bindtabclick="onTabClick"
+  bindchange="onChange"
+  activeClass="tab-bar-title__selected"
+  
+>
+  <block wx:for="{{tabList}}" wx:key="title">
+    <view class="tab-content" data-set="{{item}}" slot="tab-content-{{index}}"  >
+      
+    </view>
+  </block>
+</mp-tabs>
 </view>

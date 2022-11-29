@@ -1,7 +1,9 @@
 // index.js
-import { getSwiperList } from '../../services/index/index';
+import { getSwiperList,getTabList } from '../../services/index/index';
 Page({
   data:{
+    tabList:[], //首页tab
+    activeTab:0,
     imgSrcs: [], //轮播图资源
     indicatorDots:true, //轮播图指示点
     autoplay:true, //自动播放
@@ -18,9 +20,24 @@ Page({
   },
 
   loadIndexPage() {
-    console.log(getSwiperList());
+    console.log(getTabList());
     this.setData({
-      imgSrcs:getSwiperList()
+      imgSrcs:getSwiperList(),
+      tabList:getTabList()
     })
   },
+
+  onTabClick(e) {
+    const index = e.detail.index
+    this.setData({ 
+      activeTab: index 
+    })
+  },
+  onChange(e) {
+    const index = e.detail.index
+    this.setData({ 
+      activeTab: index 
+    })
+  },
+  
 })
