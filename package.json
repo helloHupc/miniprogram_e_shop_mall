@@ -1,0 +1,22 @@
+{
+  "name": "miniprogram_e_shop_mall",
+  "version": "1.0.0",
+  "description": "",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/helloHupc/miniprogram_e_shop_mall.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/helloHupc/miniprogram_e_shop_mall/issues"
+  },
+  "homepage": "https://github.com/helloHupc/miniprogram_e_shop_mall#readme",
+  "dependencies": {
+    "@miniprogram-component-plus/tabs": "^1.0.0"
+  }
+}

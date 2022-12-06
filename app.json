@@ -3,10 +3,12 @@
         "pages/index/index"
     ],
     "window": {
-        "backgroundTextStyle": "light",
+        "backgroundTextStyle": "dark",
         "navigationBarBackgroundColor": "#fff",
-        "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black"
+        "navigationBarTitleText": "保军广告礼品",
+        "navigationBarTextStyle": "black",
+        "enablePullDownRefresh": true,
+        "backgroundColor": "#efefef"
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"
