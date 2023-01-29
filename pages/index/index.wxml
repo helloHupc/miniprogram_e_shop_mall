@@ -16,7 +16,6 @@
   </view>
 </view>
 
-
 <view class="home-page-container">
   <mp-tabs 
     tabs="{{tabList}}" 
@@ -25,14 +24,29 @@
     bindtabclick="onTabClick"
     bindchange="onChange"
     activeClass="tab-bar-title__selected"
-    
   >
     <block wx:for="{{tabList}}" wx:key="title">
-      
-      <view class="tab-content" slot="tab-content-{{index}}" > {{item.title}} </view>
-      
+      <view class="tab-content" slot="tab-content-{{index}}" >  </view>
     </block>
   </mp-tabs>
+</view>
 
+<view class="good-list">
+  <block wx:for="{{goodList}}">
+    <view class="good-card" id="{{item.id}}">
+      <image src="{{item.img}}" />
+      <view class="title">
+        <text>{{item.title}}</text>
+      </view>
+      <view class="tags">
+        <view class="tag">
+          <text>{{item.tag}}</text>
+        </view>
+      </view>
 
+      <view class="price">
+        <text>￥{{item.price}}</text>
+      </view>
+    </view>
+  </block>  
 </view>

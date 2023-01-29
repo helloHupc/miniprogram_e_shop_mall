@@ -1,8 +1,9 @@
 // index.js
-import { getSwiperList,getTabList } from '../../services/index/index';
+import { getSwiperList,getTabList,getGoodList } from '../../services/index/index';
 Page({
   data:{
     tabList:[], //首页tab
+    goodList:[], //首页商品列表
     activeTab:0,
     imgSrcs: [], //轮播图资源
     indicatorDots:true, //轮播图指示点
@@ -20,10 +21,11 @@ Page({
   },
 
   loadIndexPage() {
-    console.log(getTabList());
+    console.log(getGoodList());
     this.setData({
       imgSrcs:getSwiperList(),
-      tabList:getTabList()
+      tabList:getTabList(),
+      goodList:getGoodList()
     })
   },
 
