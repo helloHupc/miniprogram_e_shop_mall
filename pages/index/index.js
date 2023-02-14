@@ -21,7 +21,6 @@ Page({
   },
 
   loadIndexPage() {
-    console.log(getGoodList());
     this.setData({
       imgSrcs:getSwiperList(),
       tabList:getTabList(),
@@ -41,5 +40,22 @@ Page({
       activeTab: index 
     })
   },
+
+  /**
+   * 上拉触底
+   */
+  onReachBottom: function(){
+    wx.showLoading({
+      title: '加载中',
+    })
+    const new_data = getGoodList();
+    this.setData({
+      goodList:[...this.data.goodList,...new_data]
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000)
+    
+  }
   
 })

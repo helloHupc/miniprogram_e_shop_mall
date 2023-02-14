@@ -25,8 +25,8 @@
     bindchange="onChange"
     activeClass="tab-bar-title__selected"
   >
-    <block wx:for="{{tabList}}" wx:key="title">
-      <view class="tab-content" slot="tab-content-{{index}}" >  </view>
+    <block wx:for="{{tabList}}" wx:key="{{index}}">
+      {{item}}
     </block>
   </mp-tabs>
 </view>
