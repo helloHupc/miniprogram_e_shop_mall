@@ -1,2 +1,21 @@
-<!--pages/goods/category/index.wxml-->
-<text>pages/goods/category/index.wxml</text>
+<view class='productNav'>
+  <!-- 左侧 -->
+  <view class='left'>
+    <block wx:for="{{oneCategory}}" wx:key="index">
+      <view class="{{active==item.groupId?'selected':'normal'}}" id="{{item.groupId}}" bindtap='switchNav'>{{item.name}}</view>
+    </block>
+  </view>
+  <!-- 右侧 -->
+  <view class='right'>
+    <block id="{{currentTab}}" wx:for="{{currentTwoData}}" wx:key="index" >
+      <view class="item">
+        <view>
+          <image src="{{item.cover}}" mode=""/>
+        </view>
+        <view class="desc">
+          {{item.name}}
+        </view>
+      </view>
+    </block>  
+  </view>
+</view>

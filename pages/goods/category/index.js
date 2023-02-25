@@ -1,10 +1,34 @@
-// pages/goods/category/index.js
+import {getCategoryList,getCategoryListByGroupId} from '../../../services/category/category'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    active:0,
+    currentTab:0,
+    oneCategory:[],
+    currentTwoData:[]
+  },
+
+  switchNav: function(e){
+    console.log(e)
+    var id = e.target.id;
+    if(this.data.currentTab == id){
+      return false;
+    }else{
+      this.setData({
+        currentTab:id
+      })
+    }
+    //获取当前分类的子分类内容
+    var data = getCategoryListByGroupId(id)
+    console.log(data)
+    this.setData({
+      active:id,
+      currentTwoData:data
+    })
 
   },
 
@@ -12,7 +36,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    //获取一级分类数据
+    var data = getCategoryList(1)
+    console.log(data)
+    //默认选中第一个一级分类
+    if(data[0].groupId != null){
+      var twoData = getCategoryListByGroupId(data[0].groupId)
+      this.setData({
+        currentTab:data[0].groupId,
+        active:data[0].groupId,
+        currentTwoData:twoData
+      })
+    }
+    
+    this.setData({
+      oneCategory:data
+    })
   },
 
   /**

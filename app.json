@@ -14,6 +14,10 @@
         "backgroundColor": "#efefef"
     },
     "tabBar": {
+      "color": "#9b9b9b",
+      "selectedColor": "#4a4a4a",
+      "backgroundColor": "#ffffff",
+      "borderStyle": "black",
       "list": [
         {
           "pagePath": "pages/index/index",
@@ -23,20 +27,20 @@
         },
         {
           "pagePath": "pages/goods/category/index",
-          "iconPath": "/image/home.png",
-          "selectedIconPath": "/image/home-active.png",
+          "iconPath": "/image/category.png",
+          "selectedIconPath": "/image/category-active.png",
           "text": "分类"
         },
         {
           "pagePath": "pages/cart/index",
-          "iconPath": "/image/home.png",
-          "selectedIconPath": "/image/home-active.png",
+          "iconPath": "/image/shopping-cart.png",
+          "selectedIconPath": "/image/shopping-cart-active.png",
           "text": "购物车"
         },
         {
           "pagePath": "pages/usercenter/index",
-          "iconPath": "/image/home.png",
-          "selectedIconPath": "/image/home-active.png",
+          "iconPath": "/image/user.png",
+          "selectedIconPath": "/image/user-active.png",
           "text": "我的"
         }
       ]
