@@ -25,28 +25,12 @@
     bindchange="onChange"
     activeClass="tab-bar-title__selected"
   >
-    <block wx:for="{{tabList}}" wx:key="{{index}}">
+    <block wx:for="{{tabList}}" wx:key="index">
       {{item}}
     </block>
   </mp-tabs>
 </view>
 
-<view class="good-list">
-  <block wx:for="{{goodList}}">
-    <view class="good-card" id="{{item.id}}">
-      <image src="{{item.img}}" />
-      <view class="title">
-        <text>{{item.title}}</text>
-      </view>
-      <view class="tags">
-        <view class="tag">
-          <text>{{item.tag}}</text>
-        </view>
-      </view>
-
-      <view class="price">
-        <text>￥{{item.price}}</text>
-      </view>
-    </view>
-  </block>  
+<view>
+  <good-list goodList="{{goodList}}"></good-list>
 </view>

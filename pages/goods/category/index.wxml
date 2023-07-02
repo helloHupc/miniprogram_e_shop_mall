@@ -8,7 +8,7 @@
   <!-- 右侧 -->
   <view class='right'>
     <block id="{{currentTab}}" wx:for="{{currentTwoData}}" wx:key="index" >
-      <view class="item">
+      <view class="item" bindtap="gotoGoodList" data-groupid="{{item.groupId}}" >
         <view>
           <image src="{{item.cover}}" mode=""/>
         </view>

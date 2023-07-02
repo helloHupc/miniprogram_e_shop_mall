@@ -29,7 +29,14 @@ Page({
       active:id,
       currentTwoData:data
     })
+  },
 
+  gotoGoodList: function(e){
+    var groupid = e.currentTarget.dataset.groupid;
+    console.log(groupid)
+    wx.navigateTo({
+      url: '/pages/goods/list/index?groupid='+groupid,
+    })
   },
 
   /**

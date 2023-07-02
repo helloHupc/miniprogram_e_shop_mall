@@ -1,0 +1,4 @@
+<!--pages/goods/list/index.wxml-->
+<view>
+  <good-list bind:click="gotoGoodDetail" goodList="{{goodList}}"></good-list>
+</view>

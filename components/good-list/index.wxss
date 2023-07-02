@@ -1,0 +1,73 @@
+/* components/good-list/index.wxss */
+.good-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
+.good-list .good-card {
+  position: relative;
+  display: flex;
+  line-height: 1;
+  padding: 0;
+  background: transparent;
+  width: 345rpx;
+  border-radius: 0 0 16rpx 16rpx;
+  justify-content: center;
+  margin: 16rpx 10rpx;
+  flex-direction: column;
+  white-space:pre-line;
+  font-size: 24rpx;
+}
+
+.good-list .good-card image {
+  flex-shrink: 0;
+  position: relative;
+  width: 340rpx;
+  height: 340rpx;
+}
+
+.good-list .good-card .title{
+  margin: 8rpx;
+  flex-shrink: 0;
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 400;
+  display: -webkit-box;
+  height: 72rpx;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  word-break: break-word;
+  line-height: 36rpx;
+}
+
+.good-list .good-card .tags{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 8rpx 0 0 0;
+}
+
+.good-list .good-card .tag{
+  margin: 8rpx;
+  color: #fa4126;
+  background: transparent;
+  font-size: 20rpx;
+  border: 1rpx solid #fa4126;
+  padding: 0 8rpx;
+  border-radius: 16rpx;
+  line-height: 30rpx;
+  margin: 0 8rpx 8rpx 0;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  word-break: keep-all;
+  text-overflow: ellipsis;
+}
+
+.good-list .good-card .price{
+  margin: 8rpx;
+  color: #fa4126;
+  font-size: 36rpx;
+}

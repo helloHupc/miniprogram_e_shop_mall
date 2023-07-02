@@ -1,0 +1,22 @@
+<!--components/good-list/index.wxml-->
+
+
+<view class="good-list">
+  <block wx:for="{{goodList}}" wx:key="index">
+    <view class="good-card" id="{{item.id}}" data-good_id="{{item.id}}" data="{{item}}" bind:tap="onClickGoods">
+      <image src="{{item.img}}" />
+      <view class="title">
+        <text>{{item.title}}</text>
+      </view>
+      <view class="tags">
+        <view class="tag">
+          <text>{{item.tag}}</text>
+        </view>
+      </view>
+
+      <view class="price">
+        <text>￥{{item.price}}</text>
+      </view>
+    </view>
+  </block>  
+</view>
