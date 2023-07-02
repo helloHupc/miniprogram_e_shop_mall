@@ -8,7 +8,8 @@ Page({
    */
   data: {
     good_info:[],
-    minSalePrice:0,
+    recLeftImg:'https://we-retail-static-1300977798.cos.ap-guangzhou.myqcloud.com/retail-mp/common/rec-left.png?imageMogr2/thumbnail/376x376/quality/70/strip/format/webp',
+    recRightImg:'https://we-retail-static-1300977798.cos.ap-guangzhou.myqcloud.com/retail-mp/common/rec-right.png?imageMogr2/thumbnail/376x376/quality/70/strip/format/webp',
     indicatorDots:false, //轮播图指示点
     autoplay:true, //自动播放
     interval:2000, //幻灯片播放时长 毫秒
@@ -76,6 +77,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage() {
+    // 自定义的返回信息
+    console.log('click share')
 
   }
 })
