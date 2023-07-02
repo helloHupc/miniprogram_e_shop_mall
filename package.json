@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/helloHupc/miniprogram_e_shop_mall#readme",
   "dependencies": {
-    "@miniprogram-component-plus/tabs": "^1.0.0"
+    "@miniprogram-component-plus/tabs": "^1.0.0",
+    "tdesign-miniprogram": "^1.1.10"
   }
 }
