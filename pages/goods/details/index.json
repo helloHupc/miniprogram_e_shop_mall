@@ -3,6 +3,9 @@
     "price": "/components/price/index",
     "t-image": "/components/webp-image/index",
     "t-icon": "tdesign-miniprogram/icon/icon",
+    "buy-bar": "./components/buy-bar/index",
+    "promotion-popup": "./components/promotion-popup/index",
+    "goods-specs-popup": "./components/goods-specs-popup/index",
     "t-button": "tdesign-miniprogram/button/button"
   }
 }

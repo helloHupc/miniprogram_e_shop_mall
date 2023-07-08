@@ -46,7 +46,8 @@
       </view>
       <view class="goods-intro">{{intro}}</view>
     </view>
-    <!-- <view class="spu-select" bindtap="showSkuSelectPopup">
+    <!-- 规格选择 -->
+    <view class="spu-select" bindtap="showSkuSelectPopup">
       <view class="label">已选</view>
       <view class="content">
         <view class="{{!selectedAttrStr ? 'tintColor' : ''}}">
@@ -55,7 +56,7 @@
         <t-icon name="chevron-right" size="40rpx" color="#BBBBBB" />
       </view>
     </view>
-    <view wx:if="{{ commentsStatistics.commentCount > 0 }}" class="comments-wrap">
+    <!-- <view wx:if="{{ commentsStatistics.commentCount > 0 }}" class="comments-wrap">
       <view class="comments-head" bindtap="navToCommentsListPage">
         <view class="comments-title-wrap">
           <view class="comments-title-label">商品评价</view>
@@ -85,8 +86,8 @@
     </view> -->
   </view>
 
-<!-- 商品详情 -->
-<view class="desc-content">
+  <!-- 商品详情 -->
+  <view class="desc-content">
     <view class="desc-content__title" wx:if="{{good_info.desc.length > 0}}">
       <t-image t-class="img" src="{{recLeftImg}}" />
       <span class="desc-content__title--text">详情介绍</span>
@@ -96,5 +97,56 @@
       <t-image t-class="desc-content__img" src="{{item}}" mode="widthFix" />
     </view>
   </view>
+
+  <!-- 底部购物车 -->
+  <view class="goods-bottom-operation">
+    <buy-bar
+      jumpArray="{{jumpArray}}"
+      soldout="{{soldout}}"
+      isStock="{{isStock}}"
+      shopCartNum="{{cartNum}}"
+      buttonType="{{buttonType}}"
+      bind:toAddCart="toAddCart"
+      bind:toNav="toNav"
+      bind:toBuyNow="buyItNow"
+      class="goods-details-card"
+    />
+  </view>
+
+  <!-- 选择规格弹层 -->
+  <goods-specs-popup
+    id="goodsSpecsPopup"
+    show="{{isSpuSelectPopupShow}}"
+    title="{{good_info.title || ''}}"
+    src="{{specImg ? specImg : primaryImage}}"
+    specList="{{good_info.specList || []}}"
+    skuList="{{skuArray}}"
+    limitBuyInfo="{{good_info.limitInfo[0].text || ''}}"
+    bind:closeSpecsPopup="handlePopupHide"
+    bind:change="chooseSpecItem"
+    bind:changeNum="changeNum"
+    bind:addCart="addCart"
+    bind:buyNow="gotoBuy"
+    bind:specsConfirm="specsConfirm"
+    isStock="{{isStock}}"
+    outOperateStatus="{{outOperateStatus}}"
+  >
+    <view slot="goods-price">
+      <view class="popup-sku__price">
+        <price
+          wx:if="{{!isAllSelectedSku || (!promotionSubCode && isAllSelectedSku)}}"
+          price="{{selectSkuSellsPrice ? selectSkuSellsPrice : good_info.minSalePrice }}"
+          wr-class="popup-sku__price-num"
+          symbol-class="popup-sku__price-symbol"
+        />
+        <price
+          wx:if="{{selectSkuSellsPrice === 0 && good_info.minSalePrice !== good_info.maxSalePrice && !isAllSelectedSku}}"
+          price="{{good_info.maxSalePrice}}"
+          wr-class="popup-sku__price-del"
+          type="delthrough"
+        />
+      </view>
+    </view>
+  </goods-specs-popup>
   
 </view>
