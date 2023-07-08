@@ -1,57 +1,131 @@
-// index.js
-import { getSwiperList,getTabList,getGoodList } from '../../services/index/index';
+import { fetchHome } from '../../services/index/index';
+import { fetchGoodsList } from '../../services/good/fetchGoods';
+import Toast from 'tdesign-miniprogram/toast/index';
+
 Page({
-  data:{
-    tabList:[], //首页tab
-    goodList:[], //首页商品列表
-    activeTab:0,
-    imgSrcs: [], //轮播图资源
+  data: {
+    imgSrcs: [],
+    tabList: [],
+    goodsList: [],
+    goodsListLoadStatus: 0,
+    pageLoading: false,
+    current: 1,
+    autoplay: true,
+    duration: '500',
+    interval: 5000,
+    navigation: { type: 'dots' },
+    swiperImageProps: { mode: 'scaleToFill' },
+  },
+
+  goodListPagination: {
+    index: 0,
+    num: 20,
+  },
+
+  privateData: {
+    tabIndex: 0,
+  },
+
+  onShow() {
+    this.getTabBar().init();
   },
 
   onLoad() {
     this.init();
   },
 
+  onReachBottom() {
+    if (this.data.goodsListLoadStatus === 0) {
+      this.loadGoodsList();
+    }
+  },
+
+  onPullDownRefresh() {
+    this.init();
+  },
+
   init() {
-    this.loadIndexPage();
+    this.loadHomePage();
   },
 
-  loadIndexPage() {
+  loadHomePage() {
+    wx.stopPullDownRefresh();
+
     this.setData({
-      imgSrcs:getSwiperList(),
-      tabList:getTabList(),
-      goodList:getGoodList()
-    })
+      pageLoading: true,
+    });
+    fetchHome().then(({ swiper, tabList }) => {
+      this.setData({
+        tabList,
+        imgSrcs: swiper,
+        pageLoading: false,
+      });
+      this.loadGoodsList(true);
+    });
   },
 
-  onTabClick(e) {
-    const index = e.detail.index
-    this.setData({ 
-      activeTab: index 
-    })
-  },
-  onChange(e) {
-    const index = e.detail.index
-    this.setData({ 
-      activeTab: index 
-    })
+  tabChangeHandle(e) {
+    this.privateData.tabIndex = e.detail;
+    this.loadGoodsList(true);
   },
 
-  /**
-   * 上拉触底
-   */
-  onReachBottom: function(){
-    wx.showLoading({
-      title: '加载中',
-    })
-    const new_data = getGoodList();
-    this.setData({
-      goodList:[...this.data.goodList,...new_data]
-    })
-    setTimeout(function () {
-      wx.hideLoading()
-    }, 1000)
-    
-  }
-  
-})
+  onReTry() {
+    this.loadGoodsList();
+  },
+
+  async loadGoodsList(fresh = false) {
+    if (fresh) {
+      wx.pageScrollTo({
+        scrollTop: 0,
+      });
+    }
+
+    this.setData({ goodsListLoadStatus: 1 });
+
+    const pageSize = this.goodListPagination.num;
+    let pageIndex = this.privateData.tabIndex * pageSize + this.goodListPagination.index + 1;
+    if (fresh) {
+      pageIndex = 0;
+    }
+
+    try {
+      const nextList = await fetchGoodsList(pageIndex, pageSize);
+      this.setData({
+        goodsList: fresh ? nextList : this.data.goodsList.concat(nextList),
+        goodsListLoadStatus: 0,
+      });
+
+      this.goodListPagination.index = pageIndex;
+      this.goodListPagination.num = pageSize;
+    } catch (err) {
+      this.setData({ goodsListLoadStatus: 3 });
+    }
+  },
+
+  goodListClickHandle(e) {
+    const { index } = e.detail;
+    const { spuId } = this.data.goodsList[index];
+    wx.navigateTo({
+      url: `/pages/goods/details/index?spuId=${spuId}`,
+    });
+  },
+
+  goodListAddCartHandle() {
+    Toast({
+      context: this,
+      selector: '#t-toast',
+      message: '点击加入购物车',
+    });
+  },
+
+  navToSearchPage() {
+    wx.navigateTo({ url: '/pages/goods/search/index' });
+  },
+
+  navToActivityDetail({ detail }) {
+    const { index: promotionID = 0 } = detail || {};
+    wx.navigateTo({
+      url: `/pages/promotion-detail/index?promotion_id=${promotionID}`,
+    });
+  },
+});

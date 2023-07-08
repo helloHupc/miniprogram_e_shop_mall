@@ -1,21 +1,8 @@
-<view class='productNav'>
-  <!-- 左侧 -->
-  <view class='left'>
-    <block wx:for="{{oneCategory}}" wx:key="index">
-      <view class="{{active==item.groupId?'selected':'normal'}}" id="{{item.groupId}}" bindtap='switchNav'>{{item.name}}</view>
-    </block>
-  </view>
-  <!-- 右侧 -->
-  <view class='right'>
-    <block id="{{currentTab}}" wx:for="{{currentTwoData}}" wx:key="index" >
-      <view class="item" bindtap="gotoGoodList" data-groupid="{{item.groupId}}" >
-        <view>
-          <image src="{{item.cover}}" mode=""/>
-        </view>
-        <view class="desc">
-          {{item.name}}
-        </view>
-      </view>
-    </block>  
-  </view>
+<view class="wrap">
+  <goods-category
+    level="{{3}}"
+    custom-class="goods-category-class"
+    category="{{list}}"
+    bind:changeCategory="onChange"
+  />
 </view>
